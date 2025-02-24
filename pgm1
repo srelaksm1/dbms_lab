@@ -1,0 +1,58 @@
+Q1: Create a department table with the following columns: dept_id (PK), dept_name(not null), dept_location.
+create table department111(dept_id numeric(5) primary key,dept_name varchar(25)not null,dept_location varchar(25));
+Table created.
+
+
+Q2: Write a SQL query to create an employee table with the following columns: emp_id(PK), emp_name, emp_salary (>20k), emp_join_date (between June 1998- tilldate), dept_id (FK).
+create table employee111(emp_id varchar(5) primary key,emp_name varchar(10),emp_salary numeric(12,2) check (emp_salary >20000),emp_joindate date check (emp_joindate >= date '1998-06-01'),dept_id numeric(5),foreign key (dept_id) references department111(dept_id));
+Table created.
+
+Q3: Create table support table with s_id (PK), emp_id (FK), dept_id (FK), status(Yes/No).
+create table support111(s_id varchar(5)primary key,emp_id varchar(5),dept_id numeric(5),foreign key (emp_id) references employee111(emp_id),foreign key (dept_id) references department111(dept_id),status varchar(3) check(status in('YES','NO')));
+Table created.
+
+
+Q4: Display the schema of the above three tables.
+SQL> desc department111;
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPT_ID				   NOT NULL NUMBER(5)
+ DEPT_NAME				   NOT NULL VARCHAR2(50)
+ DEPT_LOCATION					    VARCHAR2(100)
+
+SQL> desc employee111;
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID 				   NOT NULL VARCHAR2(5)
+ EMP_NAME					    VARCHAR2(10)
+ EMP_SALARY					    NUMBER(12,2)
+ EMP_JOINDATE					    DATE
+ DEPT_ID					    NUMBER(5)
+
+SQL> desc support111;
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ S_ID					   NOT NULL VARCHAR2(5)
+ EMP_ID 					    VARCHAR2(5)
+ DEPT_ID					    NUMBER(5)
+ STATUS 					    VARCHAR2(3)
+
+
+Q5: Alter the employee table to add a new column emp_email of type VARCHAR(100).
+ALTER TABLE employee111 ADD emp_email VARCHAR(100);
+
+Q6: Drop the support table if it is no longer required.
+SQL> drop table support111;
+Table dropped.
+Q7: Modify the emp_salary column in the employee table to allow values up to
+DECIMAL(12, 2).
+ALTER TABLE employee111
+MODIFY emp_salary DECIMAL(12, 2);
+SQL> alter table employee111 modify emp_salary decimal(12,2);
+
+Table altered.
+
+
+
+
+
