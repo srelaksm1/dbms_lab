@@ -1,0 +1,41 @@
+2. DML (Data Manipulation Language) Questions
+Q8: Add five suitable records to department table (Let value of dept_id starts with 101).
+insert into department111 values('101','john','kolkata');
+1 row created.
+
+insert into department111 values('102','David','kochi');
+1 row created.
+
+insert into department111 values('103','Charley','delhi');
+1 row created.
+
+insert into department111 values('104','Bob','Chennai');
+1 row created.
+
+insert into department111 values('105','Zarah','Bengalore');
+1 row created.
+
+Q9: Insert the following employee record into the employee table: emp_id = 1, emp_name= 'John Doe', emp_salary = 60000, emp_join_date = '15-05-2021', dept_id= 101.
+
+insert into employee111 values('1','John Doe','60000', TO_DATE('2021-05-15', 'YYYY-MM-DD'),'101','john@gmail.com');
+
+Q10: Insert multiple records of employees into the employee table with emp_id, emp_name,
+emp_salary, and dept_id.
+insert into employee111 values('2','Joe','70000', TO_DATE('2021-05-16', 'YYYY-MM-DD'),'102','joe@gmail.com');
+
+insert into employee111 values('3','mathew','30000', TO_DATE('2021-05-16', 'YYYY-MM-DD'),'102','mathew@gmail.com');
+
+insert into employee111 values('4','ivin','20000', TO_DATE('2021-05-16', 'YYYY-MM-DD'),'103','ivin@gmail.com');
+
+
+Q11: Update the salary of the employee with emp_id = 1 by increasing it by 10%.
+update employee111 set emp_salary=emp_salary*1.10 where emp_id=1;
+
+Q12: Delete the record of the employee with emp_id = 1.
+delete from employee111 where emp_id=1;
+
+Q13: Update the emp_salary of employees in dept_id = 101 to 10% more if their currentsalary is less than 50000.
+
+update employee111 set emp_salary=emp_salary*1.10 where dept_id='101' and emp_salary<50000;
+
+
