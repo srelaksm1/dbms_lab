@@ -1,0 +1,43 @@
+5. View Questions
+Q29: Create a view high_salary_employees that lists the emp_name and emp_salary of employees who earn above 70000.
+SQL> create view high_salary_employees as select emp_name,emp_salary from employee111 where emp_salary>70000;
+View created.
+
+Q30: Write a query to view the data from the high_salary_employees view.
+SQL> select *from high_salary_employees;
+
+EMP_NAME   EMP_SALARY
+---------- ----------
+nithya		80000
+
+SQL> select *from department111;                     
+
+   DEPT_ID DEPT_NAME		     DEPT_LOCATION
+---------- ------------------------- -------------------------
+       101 john 		     kolkata
+       102 David		     kochi
+       103 Charley		     delhi
+       104 Bob			     Chennai
+       105 Zarah		     Bengalore
+       106 avid 		     ernakulam
+
+6 rows selected.
+
+
+Q31: Create a view to list employees along with the department name and their salary,filtering out employees earning below 50000.
+SQL> create view empdept as select e.emp_name,d.dept_name,e.emp_salary from employee111 e join department111 d on e.dept_id=d.dept_id where e.emp_salary>=50000;
+View created.
+SQL> select *from empdept;
+
+EMP_NAME   DEPT_NAME		     EMP_SALARY
+---------- ------------------------- ----------
+Joe	   David			  70000
+
+
+Q32: Drop the high_salary_employees view.
+SQL> drop view high_salary_employees;
+
+View dropped.
+
+
+
