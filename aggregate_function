@@ -1,0 +1,86 @@
+6. Aggregate Function Questions
+Q33: Write a query to find the total salary paid in each department.
+SQL> select dept_id,sum(emp_salary)as total_salary from employee111 group by dept_id;
+
+   DEPT_ID TOTAL_SALARY
+---------- ------------
+       108	 200000
+       105	  30000
+       104	  30000
+       111	  80000
+       102	  70000
+
+
+Q34: Use AVG() to find the average salary of employees in the 'Marketing' department.
+SQL> select *from department111;
+
+   DEPT_ID DEPT_NAME		     DEPT_LOCATION
+---------- ------------------------- -------------------------
+       101 EEE			     kolkata
+       102 CS			     kochi
+       103 Mca			     delhi
+       104 Mechanical		     Chennai
+       105 Ec			     Bengalore
+       106 Marketing		     ernakulam
+
+6 rows selected.
+SQL> select *from employee111;
+
+EMP_I EMP_NAME	 EMP_SALARY EMP_JOIND	 DEPT_ID EMP_EMAIL
+----- ---------- ---------- --------- ---------- ----------------
+14    nithya	      80000 16-MAY-21	     111 nithya@gmail.com
+2     Joe	      70000 16-MAY-21	     102 joe@gmail.com
+3     mathew	      30000 16-MAY-21	     105 mathew@gmail.com
+6     wee	      30000 16-MAY-21	     104 ew@gmail.com
+7     singh	      50000 16-MAY-21	     106 in@gmail.com
+11    simba	      50000 16-MAY-21	     108 simba@gmail.com
+12    ridhi	      50000 16-MAY-21	     108 ridhi@gmail.com
+13    smith	      50000 16-MAY-21	     108 smith@gmail.com
+
+8 rows selected.
+SQL> SELECT dept_id, AVG(emp_salary) AS avg_salary FROM employee111 WHERE dept_id = (SELECT dept_id FROM department111 WHERE dept_name ='Marketing')GROUP BY dept_id;
+
+   DEPT_ID AVG_SALARY
+---------- ----------
+       106	50000
+
+
+
+Q35: Find the employee with the highest salary in each department using MAX().
+SQL> select dept_id,max(emp_salary)from employee111 group by dept_id;
+
+   DEPT_ID MAX(EMP_SALARY)
+---------- ---------------
+       108	     50000
+       105	     30000
+       104	     30000
+       111	     80000
+       102	     70000
+       106	     50000
+
+6 rows selected.
+
+Q36: Write a query that finds the total number of employees in each department.
+SQL> select dept_id,count(*)as total_employees from employee111 group by dept_id;
+
+   DEPT_ID TOTAL_EMPLOYEES
+---------- ---------------
+       108		 3
+       105		 1
+       104		 1
+       111		 1
+       102		 1
+       106		 1
+
+6 rows selected.
+
+Q37: Calculate the sum of the salaries of all employees whose emp_salary is greater than
+50000.
+SQL> select sum(emp_salary)as total_salary from employee111 where emp_salary>50000;
+
+TOTAL_SALARY
+------------
+      150000
+
+
+
