@@ -1,0 +1,138 @@
+3. SELECT with Filters (WHERE, HAVING, GROUP BY, ORDER BY)
+Q14: Write a SELECT query to list all employees with their emp_id, emp_name, and
+emp_salary.
+SQL> select emp_id,emp_name,emp_salary from employee111;
+
+EMP_I EMP_NAME	 EMP_SALARY
+----- ---------- ----------
+14    nithya	      80000
+2     Joe	      70000
+3     mathew	      30000
+6     wee	      30000
+7     singh	      50000
+11    simba	      50000
+12    ridhi	      50000
+13    smith	      50000
+
+8 rows selected.
+
+
+Q15: Retrieve the emp_name, emp_salary, and emp_join_date for employees whose
+salary is greater than 50000.
+SQL> select emp_name,emp_salary,emp_joindate from employee111 where emp_salary>50000;
+
+EMP_NAME   EMP_SALARY EMP_JOIND
+---------- ---------- ---------
+nithya		80000 16-MAY-21
+Joe		70000 16-MAY-21
+
+
+Q16: List employees in the employee table ordered by emp_salary in descending order.
+SQL> select *from employee111 order by emp_salary desc;
+
+EMP_I EMP_NAME	 EMP_SALARY EMP_JOIND	 DEPT_ID EMP_EMAIL
+----- ---------- ---------- --------- ---------- ---------------------------
+14    nithya	      80000 16-MAY-21	     111 nithya@gmail.com
+2     Joe	      70000 16-MAY-21	     102 joe@gmail.com
+12    ridhi	      50000 16-MAY-21	     108 ridhi@gmail.com
+13    smith	      50000 16-MAY-21	     108 smith@gmail.com
+7     singh	      50000 16-MAY-21	     108 in@gmail.com
+11    simba	      50000 16-MAY-21	     108 simba@gmail.com
+3     mathew	      30000 16-MAY-21	     105 mathew@gmail.com
+6     wee	      30000 16-MAY-21	     104 ew@gmail.com
+
+8 rows selected.
+
+Q17: Retrieve all employees' names and salaries who joined after 01-01-2020.
+SQL> select emp_name,emp_salary from employee111 where emp_joindate>date '2020-01-01';
+
+EMP_NAME   EMP_SALARY
+---------- ----------
+nithya		80000
+Joe		70000
+mathew		30000
+wee		30000
+singh		50000
+simba		50000
+ridhi		50000
+smith		50000
+
+
+Q18: Write a query to select all employees whose name starts with "J".
+SQL> select emp_name from employee111 where emp_name like 'J%';
+
+EMP_NAME
+----------
+Joe
+
+Q19: Select the emp_name and emp_salary for employees whose salary is between 40000
+and 60000.
+SQL> select emp_name,emp_salary from employee111 where emp_salary between 40000 and 60000;
+
+EMP_NAME   EMP_SALARY
+---------- ----------
+singh		50000
+simba		50000
+ridhi		50000
+smith		50000
+
+Q20: Write a query that groups employees by dept_id and shows the total salary per
+department.
+SQL>  select dept_id,sum(emp_salary)as total_salary from employee111 group by dept_id;
+
+   DEPT_ID TOTAL_SALARY
+---------- ------------
+       108	 150000
+       105	  30000
+       104	  30000
+       111	  80000
+       102	  70000
+       106	  50000
+
+6 rows selected.
+
+
+Q21: Retrieve the department-wise average salary, but only for those departments with an
+average salary above 60000.
+SQL> select dept_id,avg(emp_salary)as avg_salary from employee111 group by dept_id having avg(emp_salary)>60000;
+
+   DEPT_ID AVG_SALARY
+---------- ----------
+       111	80000
+       102	70000
+
+Q22: List the departments and the number of employees in each department who earn
+above 50000.
+SQL> select dept_name,count(*) as num from department111,employee111 where emp_salary>50000 group by dept_name;
+
+DEPT_NAME			 NUM
+------------------------- ----------
+Ec				   2
+EEE				   2
+Mca				   2
+Marketing			   2
+Mechanical			   2
+CS				   2
+
+6 rows selected.
+
+
+Q23: Use HAVING to list departments that have more than 3 employees.
+SQL> select dept_id,count(*) as total_employees from employee111 group by dept_id having count(*)>3;
+
+   DEPT_ID TOTAL_EMPLOYEES
+---------- ---------------
+       108		 4
+
+
+
+
+
+
+
+
+
+
+
+
+
