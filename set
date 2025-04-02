@@ -1,0 +1,46 @@
+9. Set Operations Questions
+Q48: Use UNION to combine the lists of employees who joined before 2010 and after
+2018.
+
+SQL> select emp_name,emp_joindate from employee111 where emp_joindate<date'2010-01-01' union select emp_name,emp_joindate from employee111 where emp_joindate>date '2018-12-31';
+
+
+EMP_NAME   EMP_JOIND
+---------- ---------
+Joe	   28-DEC-09
+mathew	   16-MAY-21
+nithya	   16-MAY-21
+ridhi	   16-MAY-21
+simba	   16-MAY-21
+singh	   16-MAY-21
+wee	   28-DEC-03
+
+7 rows selected.
+
+
+Q49: Use INTERSECT to find employees who get salary in the range 40k-50k.
+SQL> SQL> select emp_name from employee111 where emp_salary>=40000 intersect select emp_name from employee111 where emp_salary<=50000;
+
+EMP_NAME
+----------
+ridhi
+simba
+singh
+smith
+
+Q50: Use EXCEPT to list out the departments not in Ernakulam.
+
+SQL> SQL> select dept_name from department111 minus select dept_name from department111 where dept_location='ernakulam';
+
+DEPT_NAME
+-------------------------
+CS
+EEE
+Ec
+Mca
+Mechanical
+
+
+
+
+
