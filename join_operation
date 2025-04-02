@@ -1,0 +1,71 @@
+7. Join Questions
+Q38: Write an INNER JOIN query to list employee names and their corresponding
+department names.
+SQL> select e.emp_name,d.dept_name from employee111 e inner join department111 d on e.dept_id=d.dept_id;
+
+EMP_NAME   DEPT_NAME
+---------- -------------------------
+nithya	   EEE
+Joe	   CS
+ridhi	   Mca
+smith	   Mca
+simba	   Mca
+wee	   Mechanical
+mathew	   Ec
+singh	   Marketing
+
+8 rows selected.
+
+
+Q39: Use a LEFT JOIN to list all employees and their department names, including those who do not belong to any department.
+
+SQL> select e.emp_name,d.dept_name from employee111 e left join department111 d on e.dept_id=d.dept_id;  
+
+EMP_NAME   DEPT_NAME
+---------- -------------------------
+nithya	   EEE
+Joe	   CS
+simba	   Mca
+ridhi	   Mca
+smith	   Mca
+wee	   Mechanical
+mathew	   Ec
+singh	   Marketing
+
+8 rows selected.
+
+
+Q40: Write a RIGHT JOIN to list all departments and their corresponding employees,
+including departments with no employees.
+SQL> select e.emp_name,d.dept_name from employee111 e left join department111 d on e.dept_id=d.dept_id;
+
+EMP_NAME   DEPT_NAME
+---------- -------------------------
+nithya	   EEE
+Joe	   CS
+simba	   Mca
+ridhi	   Mca
+smith	   Mca
+wee	   Mechanical
+mathew	   Ec
+singh	   Marketing
+
+8 rows selected.
+
+Q41: Use an OUTER JOIN to list all employees and their department names, showing NULL if there is no corresponding department.
+SQL> select e.emp_name,d.dept_name from employee111 e full outer join department111 d on e.dept_id=d.dept_id;
+
+EMP_NAME   DEPT_NAME
+---------- -------------------------
+nithya	   EEE
+Joe	   CS
+mathew	   Ec
+wee	   Mechanical
+singh	   Marketing
+simba	   Mca
+ridhi	   Mca
+smith	   Mca
+
+8 rows selected.
+
+
