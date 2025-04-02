@@ -1,0 +1,73 @@
+4. Subquery Questions
+Q24: Write a query to find the names of employees who have a salary greater than the average salary in their department.
+SQL> select emp_name from employee111 where emp_salary>(select avg(emp_salary)from employee111 where dept_id=employee111.dept_id);
+
+EMP_NAME
+----------
+nithya
+Joe
+
+
+Q25: Select the emp_name and emp_salary of employees who are in departments that are located in 'Ernakulam'.
+SQL> select emp_name,emp_salary from employee111 where dept_id in(select dept_id from department111 where dept_location='Ernakulam');
+
+EMP_NAME   EMP_SALARY
+---------- ----------
+singh		50000
+
+
+
+Q26: Find the emp_name of employees who earn more than the highest salary in department 102.
+
+SQL> select emp_name from employee111 where emp_salary>(select max(emp_salary)from employee111 where dept_id=102);
+
+EMP_NAME
+----------
+nithya
+
+
+
+Q27: Write a query that returns the department name of the department with the highest total salary.
+select dept_name from department111 where dept_id=(select dept_id from employee111 group by dept_id order by sum(emp_salary)desc fetch first 1  row only);
+
+SQL> select *from employee111;
+
+EMP_I EMP_NAME	 EMP_SALARY EMP_JOIND	 DEPT_ID EMP_EMAIL
+----- ---------- ---------- --------- ---------- ----------------------------------------------------------------------------------------------------
+14    nithya	      80000 16-MAY-21	     101 nithya@gmail.com
+2     Joe	      70000 16-MAY-21	     102 joe@gmail.com
+3     mathew	      30000 16-MAY-21	     105 mathew@gmail.com
+6     wee	      30000 16-MAY-21	     104 ew@gmail.com
+7     singh	      50000 16-MAY-21	     106 in@gmail.com
+11    simba	      50000 16-MAY-21	     103 simba@gmail.com
+12    ridhi	      50000 16-MAY-21	     103 ridhi@gmail.com
+13    smith	      50000 16-MAY-21	     103 smith@gmail.com
+
+8 rows selected.
+
+SQL> select dept_name from department111 where dept_id=(select dept_id from employee111 group by dept_id order by sum(emp_salary)desc fetch first 1  row only);
+
+
+DEPT_NAME
+-------------------------
+Mca
+
+Q28: Find the emp_id and emp_name of employees who are working in departments withless than 10 employees.
+SQL> select emp_id,emp_name from employee111 where dept_id in(select dept_id from employee111 group by dept_id having count(*)<10);
+
+EMP_I EMP_NAME
+----- ----------
+14    nithya
+11    simba
+12    ridhi
+13    smith
+3     mathew
+6     wee
+2     Joe
+7     singh
+
+8 rows selected.
+
+
+
+
